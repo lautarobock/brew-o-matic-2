@@ -38,6 +38,8 @@ if ('development' == app.get('env')) {
 //Connect to Mongoose
 require("mongoose").connect(process.env.MONGOLAB_URI);
 
+require("./config").configure(app);
+
 // log.info("TEST");
 var server = http.createServer(app).listen(app.get('port'), function(){
     // log.info('Express server listening on port ' + app.get('port'));
