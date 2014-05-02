@@ -340,15 +340,25 @@ module.exports = function (grunt) {
       }
     },
     nodemon: {
-        dev: {
-          script: 'server/server.js',
-          options: {
-            env: {
-              'MONGOLAB_URI': 'localhost:27017/brew-o-matic'
-            },
-            watch: ['server']
-          }
+      dev: {
+        script: 'server/main/server.js',
+        options: {
+          env: {
+            'MONGOLAB_URI': 'localhost:27017/brew-o-matic'
+          },
+          watch: ['server']
         }
+      },
+      dist: {
+        script: 'server/main/server.js',
+        options: {
+          args: ['dist'],
+          env: {
+            'MONGOLAB_URI': 'localhost:27017/brew-o-matic'
+          },
+          watch: ['server']
+        }
+      }
     }
   });
 
@@ -408,5 +418,6 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('run', ['nodemon']);
+  grunt.registerTask('run', ['nodemon:dev']);
+  grunt.registerTask('run-dist', ['default','nodemon:dist']);
 };

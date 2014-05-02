@@ -3,6 +3,11 @@
 //   token:'a5e5473f-568f-4058-9f52-4fb5f1153f22'
 // });
 
+var dist = process.argv.indexOf('dist') != -1;
+console.log("DIST",process.argv);
+var publicDirName = '../../app';
+if ( dist ) publicDirName = '../../dist';
+
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -17,7 +22,8 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, '../app')));
+console.log("PUBLIC",publicDirName);
+app.use(express.static(path.join(__dirname, publicDirName)));
 
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -31,7 +37,6 @@ if ('development' == app.get('env')) {
 
 //Connect to Mongoose
 require("mongoose").connect(process.env.MONGOLAB_URI);
-
 
 // log.info("TEST");
 var server = http.createServer(app).listen(app.get('port'), function(){
