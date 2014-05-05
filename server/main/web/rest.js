@@ -12,3 +12,4 @@ exports.bind = function(name, rest, app, path, security) {
     app.post('/' + path + name, security.save || [], rest.save);    
     app.delete('/' + path + name + "/:id", rest.remove);    
 };
+

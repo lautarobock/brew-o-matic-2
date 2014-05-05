@@ -359,6 +359,14 @@ module.exports = function (grunt) {
           watch: ['server']
         }
       }
+    },
+    shell: {
+      runTest: {
+        options: {
+                  stdout: true
+              },
+        command: 'node_modules/jasmine-node/bin/jasmine-node server/test/'
+      }
     }
   });
 
@@ -417,6 +425,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('run', ['nodemon:dev']);
   grunt.registerTask('run-dist', ['default','nodemon:dist']);

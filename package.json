@@ -36,7 +36,8 @@
     "karma-jasmine": "^0.1.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "grunt-nodemon": "^0.2.1",
-    "jasmine-node": "^1.14.3"
+    "jasmine-node": "^1.14.3",
+    "grunt-shell": "^0.7.0"
   },
   "engines": {
     "node": ">=0.10.0"
