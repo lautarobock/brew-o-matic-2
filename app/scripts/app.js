@@ -9,7 +9,8 @@ var app = angular.module('app', [
         'ngSanitize',
         'ngRoute',
         'ui.bootstrap',
-        'gplus'
+        'gplus',
+        'resource'
     ]);
 
 app.config(function ($routeProvider) {
@@ -23,7 +24,7 @@ app.config(function ($routeProvider) {
       });
 });
 
-app.run(function($rootScope,evaluateAuthResult,$log) {
+app.run(function($rootScope, evaluateAuthResult, $log, Login) {
         
     $rootScope.$on('g+login', function(event, authResult) {
         evaluateAuthResult(authResult, function(err, googleUser) {
@@ -33,18 +34,18 @@ app.run(function($rootScope,evaluateAuthResult,$log) {
               $log.error("ERROR", "Login Error", err.message);
             } else if ( googleUser ) {
               $rootScope.googleUser = googleUser;
-              // Login.get({
-              //         google_id:googleUser.id, 
-              //         name:googleUser.name, 
-              //         email: googleUser.email
-              //     }, function(user) {
-              //         $rootScope.user = User.get({_id: user._id}, function(user) {
-              //             $rootScope.loginSuccess = true;
-              //             // $rootScope.user = user;
-              //             CellarService.loadMyCellar();
-              //             RatingService.loadMyRatings();
-              //         });
-              // });
+              Login.get({
+                      google_id:googleUser.id, 
+                      name:googleUser.name, 
+                      email: googleUser.email
+                  }, function(user) {
+                      $rootScope.user = User.get({_id: user._id}, function(user) {
+                          $rootScope.loginSuccess = true;
+                          // $rootScope.user = user;
+                          CellarService.loadMyCellar();
+                          RatingService.loadMyRatings();
+                      });
+              });
             } else {
               $log.info("ERROR", "Silent Login Error");
             }

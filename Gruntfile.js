@@ -346,8 +346,7 @@ module.exports = function (grunt) {
           env: {
             'MONGOLAB_URI': 'localhost:27017/brew-o-matic'
           },
-          watch: ['server/main'],
-          delay: 1000,
+          watch: ['server/main']
         }
       },
       dist: {
@@ -357,8 +356,19 @@ module.exports = function (grunt) {
           env: {
             'MONGOLAB_URI': 'localhost:27017/brew-o-matic'
           },
-          watch: ['server']
+          watch: ['server/main'],
+          livereload: false
         }
+      }
+    },
+    execute: {
+      target: {
+        options: {
+          env: {
+            'MONGOLAB_URI': 'localhost:27017/brew-o-matic'
+          }  
+        },
+        src: ['server/main/server.js']
       }
     },
     shell: {
