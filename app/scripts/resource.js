@@ -2,7 +2,7 @@
 
 	'use strict';
 
-	var resource = angular.module('resource', ['ngResource']);
+	var resource = angular.module('bom.resource', ['ngResource']);
 
 	// var path = 'api/'
 

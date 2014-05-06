@@ -1,0 +1,58 @@
+<header class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <!-- <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" ng-click="toogleMenu()">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand visible-xs" href="#">{{ 'menu.title.mobile' | translate }}</a>
+      </div> -->
+      <nav > <!-- class="hidden-xs" -->
+          <ul class="nav navbar-nav">
+              <a href="#" role="button" class="navbar-brand">
+                  {{ 'menu.title.desktop' | translate }}
+              </a>
+              <li class="dropdown" secure>
+                  <a href="" role="button" class="dropdown-toggle">
+                      {{currentState().data.i18n |translate}} <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li ng-repeat="state in states" ng-hide="hide(state)"><a ui-sref="{{state}}">{{getText(state)|translate}}</a></li>
+                      <!-- <li ng-hide="hide('recipe')"><a ui-sref="recipe">{{getText('recipe')|translate}}</a></li>
+                      <li ng-hide="hide('water')"><a ui-sref="water">{{getText('water')|translate}}</a></li>          
+                      <li ng-hide="hide('equipement')"><a ui-sref="equipement">{{'menu.main.equipement'|translate}}</a></li>
+                      <li ng-hide="hide('calendar')"><a ui-sref="calendar">{{'menu.main.calendar'|translate}}</a></li>
+                      <li ng-hide="hide('settings')"><a ui-sref="settings">{{'menu.main.settings'|translate}}</a></li> -->
+                  </ul>
+              </li>
+              <li secure>
+                  <a href="#/activity" role="button" >
+                      {{'menu.general.activity'|translate}} </b>
+                  </a>
+              </li>
+              <li><sign-in></sign-in></li>
+              <li><log-in></log-in></li>
+          </ul>
+      </nav>
+      <!-- <nav class="visible-xs">
+          <ul class="nav navbar-nav"  collapse="isCollapsed">
+              <li><sign-in></sign-in></li>
+              <li><log-in></log-in></li>
+              <li class="dropdown" secure>
+                  <a href="" role="button" class="dropdown-toggle">
+                      {{'menu.myBeers'|translate}} <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li><a href="#/rating">{{'menu.me.califications'|translate}}</a></li>
+                      <li><a href="#/cellar">{{'cellar.inMy'|translate}}</a></li>
+                      <li><a href="#/stats">{{'content.stats'|translate}}</a></li>
+                  </ul>
+              </li>
+          </ul>
+      </nav> -->
+    </div>
+  </div>
+</header>

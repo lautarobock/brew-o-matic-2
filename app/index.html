@@ -14,9 +14,11 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="styles/bootstrap-theme.min.css"> -->
     <!-- endbuild -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 
     <script src="https://apis.google.com/js/client:plusone.js"></script>
   </head>
@@ -26,7 +28,10 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div main-menu></div>
+    <div class="container" ui-view=""></div>
+    <!-- <a class="btn btn-default" ng-click="goState('state1')">State 1</a>
+    <a class="btn btn-primary" ui-sref="state2">State 2</a> -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <!--
@@ -52,16 +57,22 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/directives/menu.js"></script>
+        <script src="scripts/directives/util.js"></script>
+        <script src="scripts/services/util.js"></script>
         <script src="scripts/gplus.js"></script>
         <script src="scripts/resource.js"></script>
+        <script src="scripts/locale/locale.js"></script>
+
         <!-- endbuild -->
 
     <script type="text/javascript">
