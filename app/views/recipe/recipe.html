@@ -8,6 +8,9 @@
     <a ui-sref="recipe.list">Mis Recetas</a>
     <a ui-sref="recipe.favorites">Favoritas</a>
     <div ui-view>
-        Estado inicial (Recetas)
+        <a href="" ng-click="reload()">Reload</a>
+        Cantidad de recetas: {{recipes.length}}
+        <br/>
+        <a href="" ng-click="black()">Black</a>
     </div>
 </div>

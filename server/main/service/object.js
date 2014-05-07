@@ -3,6 +3,7 @@
 exports.ObjectService = function(dao, customId) {
 	this.findAll = function(req, res) {
         // console.log("INFO", "findAll");
+        console.log("INFO","Authorization",req.headers.authorization);
         dao.find().exec(function(err,results) {
             if ( err ) {
                 res.send(err);    

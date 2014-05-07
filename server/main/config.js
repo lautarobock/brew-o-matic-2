@@ -6,6 +6,8 @@ exports.configure = function(app) {
 	var services = [{
 	    name: "Recipe",
 	    customId: true
+	},{
+	    name: "User"
 	}];
 
 	var security = {
@@ -19,7 +21,7 @@ exports.configure = function(app) {
             
   //       }
 	};
-
+	app.get('/api/login/by_google/:google_id', require("./service/user").getForLogin);
 	for( var i=0; i<services.length; i++ ) {
 		var service = new ObjectService(model[services[i].name],services[i].customId);
 		rest.bind(services[i].name, service, app, 'api/', security);	

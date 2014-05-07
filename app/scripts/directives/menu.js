@@ -13,18 +13,18 @@
 
                 $scope.states = ['recipe','water','equipement'];
 
+                $scope.i18n = {
+                    recipe: 'menu.main.recipes',
+                    water: 'menu.main.water',
+                    equipement: 'menu.main.equipement'
+                };
+
                 $scope.toogleMenu = function() {
                     $scope.isCollapsed = !$scope.isCollapsed;            
                 };
 
                 $scope.hide = function(state) {
-                    // console.log("STATE",$state);
                     return $state.current.name.indexOf(state) == 0;
-                };
-
-                $scope.getText = function(state) {
-                    if ( !$state.get(state) ) return;
-                    return $state.get(state).data.i18n;
                 };
 
                 $scope.currentState = function() {
