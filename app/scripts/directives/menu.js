@@ -7,8 +7,12 @@
             restrict: "EA",
             replace: true,
             templateUrl: 'views/menu/menu.html',
-            controller: function($scope,$state) {
+            controller: function($scope,$state, Session) {
                 
+                Session.user.then(function(user) {
+                    $scope.loggedUser = user;
+                });
+
                 $scope.isCollapsed = true;
 
                 $scope.states = ['recipe','water','equipement'];

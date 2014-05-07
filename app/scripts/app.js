@@ -20,34 +20,41 @@ var app = angular.module('app', [
         'bom.recipe'
     ]);
 
-//Config Routes
-
-
 //Config Translations
 app.config(function($translateProvider,localeEs) {
-    
     $translateProvider.translations('es', localeEs);
     $translateProvider.preferredLanguage('es');
-
 });
 
-app.run(function($rootScope, evaluateAuthResult, $log, Login, $http, User, $q) {
+app.factory("Session", function() {
+    return {
+        user: undefined,
+        googleUser: undefined
+    };
+});
+
+app.run(function($rootScope, GPlus, $log, Login, $http, User, $q, Session) {
 
     var deferred = $q.defer();
-    $rootScope.deferredUser = deferred.promise;
+    
+    Session.user = deferred.promise;
+
+    $rootScope.loginSuccess = false;
 
     $rootScope.$on('g+login', function(event, authResult) {
-        evaluateAuthResult(authResult, function(err, googleUser) {
+        GPlus.evaluateAuthResult(authResult, function(err, googleUser) {
             if ( err ) {
               $rootScope.loginError = err.message;
-              $rootScope.$apply();
+              // $rootScope.$apply();
               $log.error("ERROR", "Login Error", err.message);
 
-              deferred.reject(null);
+              // deferred.reject(null);
             } else if ( googleUser ) {
-                $rootScope.googleUser = googleUser;
+                Session.googleUser = googleUser;
 
                 $http.defaults.headers.common['Authorization'] = googleUser.id;
+
+                $log.info("Google User", googleUser);
 
                 Login.get({
                         google_id:googleUser.id, 
@@ -55,17 +62,21 @@ app.run(function($rootScope, evaluateAuthResult, $log, Login, $http, User, $q) {
                         email: googleUser.email
                     }, function(user) {
 
-                        $rootScope.user = User.get({_id: user._id}, function(user) {
+                        User.get({_id: user._id}, function(user) {
                             $rootScope.loginSuccess = true;
-                            deferred.resolve($rootScope.user);
+                            deferred.resolve(user);
                         });
                 });
             } else {
-                deferred.reject(null);
+                // deferred.reject(null);
                 $log.info("ERROR", "Silent Login Error");
             }
         });
     });
+
+    // Session.user.then(function(user) {
+    //     $rootScope.loggedUser = user;
+    // });
 });
 
 

@@ -34,6 +34,14 @@
                 <li><sign-in></sign-in></li>
                 <li><log-in></log-in></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right" ng-show="loggedUser">
+                <li class="dropdown">
+                    <a  href="" class="dropdown-toggle" data-toggle="dropdown"><span>{{loggedUser.name}}</span> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://docs.google.com/document/d/1lH9tL2bq6RDdG1ljv8Bg62HCdAb5yvbpGzec09ahi2M/edit" target="_blank">Ayuda V. {{version}}</a></li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
       <!-- <nav class="visible-xs">
           <ul class="nav navbar-nav"  collapse="isCollapsed">
