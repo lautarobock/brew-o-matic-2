@@ -18,7 +18,7 @@
                 </a>
                 <li class="dropdown" secure>
                     <a href="" role="button" class="dropdown-toggle">
-                        {{ i18n[currentState().name] |translate}} <b class="caret"></b>
+                        {{ i18n[currentState()] |translate}} <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li ng-repeat="state in states" ng-hide="hide(state)">

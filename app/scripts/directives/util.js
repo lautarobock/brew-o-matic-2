@@ -13,7 +13,7 @@
     util.directive('secure', function(Session) {
         return function(scope,element) {
             element.addClass('hidden');
-            Session.user.then(function(user) {
+            Session.onChangeUser(function(user) {
                 if ( user ) {
                     element.removeClass('hidden');
                 } else {
@@ -49,12 +49,12 @@
 
     util.directive('notLogged', function(Session) {
         return function(scope,element) {
-            Session.user.then(function(user) {
-                // if ( user ) {
+            Session.onChangeUser(function(user) {
+                if ( user ) {
                     element.addClass('hidden');
-                // } else {
-                //     element.removeClass('hidden');
-                // }
+                } else {
+                    element.removeClass('hidden');
+                }
             });
         };
     });

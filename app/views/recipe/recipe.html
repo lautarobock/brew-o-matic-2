@@ -4,13 +4,14 @@
             Recetas
         </a>
     </h1>
-    <hr/>
-    <a ui-sref="recipe.list">Mis Recetas</a>
-    <a ui-sref="recipe.favorites">Favoritas</a>
+    <hr />
+    <ul class="nav nav-tabs">
+        <li ng-repeat="tab in tabs" ng-class="{'active':getState()==tab.name}">
+            <a ui-sref="{{tab.name}}">{{tab.title}}</a>
+        </li>
+    </ul>
     <div ui-view>
-        <a href="" ng-click="reload()">Reload</a>
-        Cantidad de recetas: {{recipes.length}}
-        <br/>
-        <a href="" ng-click="black()">Black</a>
+        <p>Lista de mis recetas</p>
+        <a ui-sref="recipe-detail">Detalle</a>
     </div>
 </div>

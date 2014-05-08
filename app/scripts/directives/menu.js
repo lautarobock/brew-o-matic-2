@@ -8,10 +8,12 @@
             replace: true,
             templateUrl: 'views/menu/menu.html',
             controller: function($scope,$state, Session) {
-                
-                Session.user.then(function(user) {
-                    $scope.loggedUser = user;
+
+                $scope.loggedUser = Session.user;
+                Session.onChangeUser(function(user) {
+                    $scope.loggedUser = Session.user;
                 });
+
 
                 $scope.isCollapsed = true;
 
@@ -32,7 +34,11 @@
                 };
 
                 $scope.currentState = function() {
-                    return $state.current;
+                    if ( $state.current.name.indexOf(".") != -1 ) {
+                        return $state.current.name.substr(0,$state.current.name.indexOf("."));    
+                    } else {
+                        return $state.current.name;
+                    }
                 };
 
             }

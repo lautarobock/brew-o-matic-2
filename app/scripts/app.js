@@ -29,15 +29,31 @@ app.config(function($translateProvider,localeEs) {
 app.factory("Session", function() {
     return {
         user: undefined,
-        googleUser: undefined
+        googleUser: undefined,
+        changeNotification: [],
+        onChangeUser: function(fn) {
+            this.changeNotification.push(fn);
+        },
+        removeListener: function(fn) {
+            var idx = this.changeNotification.indexOf(fn);
+            if ( idx != -1 ) {
+                this.changeNotification.splice(idx,1);
+            }
+        },
+        setUser: function(user) {
+            this.user = user;
+            angular.forEach(this.changeNotification, function(fs) {
+                fs(user);
+            });
+        }
     };
 });
 
-app.run(function($rootScope, GPlus, $log, Login, $http, User, $q, Session) {
+app.run(function($rootScope, GPlus, $log, Login, $http, User, Session) {
 
-    var deferred = $q.defer();
+    // var deferred = $q.defer();
     
-    Session.user = deferred.promise;
+    // Session.user = null;
 
     $rootScope.loginSuccess = false;
 
@@ -64,7 +80,8 @@ app.run(function($rootScope, GPlus, $log, Login, $http, User, $q, Session) {
 
                         User.get({_id: user._id}, function(user) {
                             $rootScope.loginSuccess = true;
-                            deferred.resolve(user);
+                            // deferred.resolve(user);
+                            Session.setUser(user);
                         });
                 });
             } else {

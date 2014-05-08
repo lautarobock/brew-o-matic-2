@@ -14,24 +14,28 @@
                 url: '/home',
                 template: 'No estas logueado!!'
             })
-            //Recipes
+            //Recipe Detail
+            .state('recipe-detail', {
+                url: '/recipe/detail/:_id',
+                controller: 'RecipeDetailController',
+                templateUrl: 'views/recipe/recipe-detail.html'
+            })
+            //Recipe Lists
             .state('recipe', {
                 url: "/recipe",
                 templateUrl: "views/recipe/recipe.html",
-                controller: 'RecipeController',
-                resolve: {
-                    user: function(Session) {
-                        return Session.user;
-                    }
-                }
-            })
-                .state('recipe.list', {
-                    url: '/list',
-                    template: '<span>Listado de Recetas</span>'
+                controller: 'RecipeController'
+            })  .state('recipe.collaborations', {
+                    url: '/collaborations',
+                    template: '<span>Listado de Collaborations</span>'
+                })
+                .state('recipe.publics', {
+                    url: '/publics',
+                    template: '<span>Listado de Publicas</span>'
                 })
                 .state('recipe.favorites', {
                     url: '/favorites',
-                    template: '<span>Listado de Favoritas</span>'
+                    template: '<strong>Recetas Favoritas</strong>'
                 })
 
             //Water
