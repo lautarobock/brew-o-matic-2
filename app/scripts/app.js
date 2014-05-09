@@ -89,9 +89,6 @@ app.run(function($rootScope, GPlus, $log, Login, $http, User, Session, $state) {
         });
     });
 
-    // Session.user.then(function(user) {
-    //     $rootScope.loggedUser = user;
-    // });
 });
 
 
