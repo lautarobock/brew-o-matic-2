@@ -54,38 +54,36 @@ app.run(function($rootScope, GPlus, $log, Login, $http, User, Session, $state) {
     $rootScope.loginSuccess = false;
 
     $rootScope.$on('g+login', function(event, authResult) {
-        GPlus.evaluateAuthResult(authResult, function(err, googleUser) {
+        GPlus.evaluateAuthResult(authResult).then(function(googleUser) {
+            $rootScope.loginError = undefined;
+
+            Session.googleUser = googleUser;
+
+            $http.defaults.headers.common['Authorization'] = googleUser.id;
+
+            $log.info("Google User", googleUser);
+
+            Login.get({
+                    google_id:googleUser.id, 
+                    name:googleUser.name, 
+                    email: googleUser.email
+                }, function(user) {
+
+                    User.get({_id: user._id}, function(user) {
+                        $rootScope.loginSuccess = true;
+                        // deferred.resolve(user);
+                        Session.setUser(user);
+                        // $state.go('recipe');
+                    });
+            });
+        },function(err) {
             if ( err ) {
                 $rootScope.loginError = err.message;
                 $log.error("ERROR", "Login Error", err.message);
                 $rootScope.loginSuccess = true;
-                $rootScope.$apply();
-                // deferred.reject(null);
-            } else if ( googleUser ) {
-                Session.googleUser = googleUser;
-
-                $http.defaults.headers.common['Authorization'] = googleUser.id;
-
-                $log.info("Google User", googleUser);
-
-                Login.get({
-                        google_id:googleUser.id, 
-                        name:googleUser.name, 
-                        email: googleUser.email
-                    }, function(user) {
-
-                        User.get({_id: user._id}, function(user) {
-                            $rootScope.loginSuccess = true;
-                            // deferred.resolve(user);
-                            Session.setUser(user);
-                            // $state.go('recipe');
-                        });
-                });
             } else {
-                // deferred.reject(null);
                 $log.info("ERROR", "Silent Login Error");
                 $rootScope.loginSuccess = true;
-                $rootScope.$apply();
             }
         });
     });

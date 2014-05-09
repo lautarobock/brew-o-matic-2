@@ -33,6 +33,9 @@
     <div class="container" ui-view="">
         <!-- <alert ng-if="loginError" type="warning">{{loginError}}</alert> -->
     </div>
+    <div ng-if="loginError">
+        No esta registrado, puede registrarse o ingresar al sistema desde aqui.
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <!--
