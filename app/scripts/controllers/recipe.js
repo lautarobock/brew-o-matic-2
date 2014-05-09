@@ -2,7 +2,17 @@
 
     var recipe = angular.module('bom.recipe', []);
 
-    recipe.controller("RecipeController", function($scope, Recipe, $state) {
+    recipe.controller('RecipeController', function($scope) {
+        $scope.myData = [{name: "Moroni", age: 50},
+                     {name: "Tiancum", age: 43},
+                     {name: "Jacob", age: 27},
+                     {name: "Nephi", age: 29},
+                     {name: "Enos", age: 34}];
+                     
+        $scope.gridOptions = { data: 'myData' };
+    });
+
+    recipe.controller("RecipeListController", function($scope, Recipe, $state) {
 
         $scope.recipes = Recipe.query();
 

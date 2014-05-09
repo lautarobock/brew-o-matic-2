@@ -13,6 +13,7 @@ var app = angular.module('app', [
         'ui.bootstrap',
         'gplus',
         'ui.router',
+        'ngGrid',
         'bom.resource',
         'bom.locale',
         'bom.menu',

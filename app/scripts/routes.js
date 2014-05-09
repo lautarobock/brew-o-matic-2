@@ -19,7 +19,8 @@
             .state('recipe', {
                 // abstract: true,
                 url: '/recipe',
-                templateUrl: 'views/recipe/recipe.html'
+                templateUrl: 'views/recipe/recipe.html',
+                controller: 'RecipeController'
             })
                 //Recipe Detail
                 .state('recipe.detail', {
@@ -31,7 +32,8 @@
                 .state('recipe.list', {
                     url: "/list",
                     templateUrl: "views/recipe/recipe-list.html",
-                    controller: 'RecipeController'
+                    controller: 'RecipeListController'
+                    
                 })
                   .state('recipe.list.collaborations', {
                         url: '/collaborations',

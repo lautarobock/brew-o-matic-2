@@ -6,7 +6,10 @@
     </h1>
     <hr />
     <div ui-view>
-        Este es el HOME de recetas.
-        Para ir a las listas debo ir a <a ui-sref="recipe.list">Mis Recetas</a>
+        <div class="gridStyle" ng-grid="gridOptions">
+        </div>
+        <div>
+            Para ir a las listas debo ir a <a ui-sref="recipe.list">Mis Recetas</a>
+        </div>
     </div>
 </div>
