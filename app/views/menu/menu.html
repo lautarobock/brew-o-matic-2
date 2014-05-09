@@ -21,18 +21,18 @@
                         {{ i18n[currentState()] |translate}} <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ng-repeat="state in states" ng-hide="hide(state.name)">
+                        <li ng-repeat="state in states" ng-class="{disabled:hide(state.name)}" > <!-- ng-hide="hide(state.name)" -->
                             <a ui-sref="{{state.url||state.name}}">{{i18n[state.name]|translate}}</a>
                         </li>
                     </ul>
                 </li>
-                <li secure>
+                <!-- <li secure>
                     <a href="#/activity" role="button" >
                         {{'menu.general.activity'|translate}} </b>
                     </a>
-                </li>
-                <li><sign-in></sign-in></li>
-                <li><log-in></log-in></li>
+                </li> -->
+                <li ng-show="loginSuccess"><sign-in></sign-in></li>
+                <li ng-show="loginSuccess"><log-in></log-in></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-show="loggedUser">
                 <li class="dropdown">

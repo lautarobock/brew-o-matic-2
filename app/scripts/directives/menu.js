@@ -17,8 +17,9 @@
                 $scope.isCollapsed = true;
 
                 $scope.states = [{
-                    name: 'recipe',
-                    url: 'recipe.list'
+                    name: 'home'
+                },{
+                    name: 'recipe'
                 },{
                     name: 'water'
                 },{
@@ -26,6 +27,7 @@
                 }];
 
                 $scope.i18n = {
+                    home: 'menu.main.home',
                     'recipe.list': 'menu.main.recipes',
                     recipe: 'menu.main.recipes',
                     water: 'menu.main.water',

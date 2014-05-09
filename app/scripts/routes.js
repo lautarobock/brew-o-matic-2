@@ -12,12 +12,12 @@
         $stateProvider
             .state('home', {
                 url: '/home',
-                template: 'No estas logueado!!'
+                template: '<h2>Bienvenido a Brew-o-Matic 2!</h2>'
             })
 
             //Recipes Root
             .state('recipe', {
-                abstract: true,
+                // abstract: true,
                 url: '/recipe',
                 templateUrl: 'views/recipe/recipe.html'
             })

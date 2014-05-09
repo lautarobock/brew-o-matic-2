@@ -4,9 +4,11 @@
 
 	var gplus = angular.module('gplus', []);
 
-	gplus.factory('GPlus', function($log) {
+	gplus.factory('GPlus', function($log, $q) {
         return {
             evaluateAuthResult: function(authResult, callback) {
+                // var deferred = $q.deferred;
+
                 $log.debug('authResult',authResult);
 
                 if ( authResult === null ) {
@@ -40,6 +42,8 @@
                     });
                     $log.info('Error inesperado');
                 }
+
+                // return deferred.$promise;
             }
         };
     });

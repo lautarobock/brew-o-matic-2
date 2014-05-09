@@ -49,22 +49,18 @@ app.factory("Session", function() {
     };
 });
 
-app.run(function($rootScope, GPlus, $log, Login, $http, User, Session) {
-
-    // var deferred = $q.defer();
-    
-    // Session.user = null;
+app.run(function($rootScope, GPlus, $log, Login, $http, User, Session, $state) {
 
     $rootScope.loginSuccess = false;
 
     $rootScope.$on('g+login', function(event, authResult) {
         GPlus.evaluateAuthResult(authResult, function(err, googleUser) {
             if ( err ) {
-              $rootScope.loginError = err.message;
-              // $rootScope.$apply();
-              $log.error("ERROR", "Login Error", err.message);
-
-              // deferred.reject(null);
+                $rootScope.loginError = err.message;
+                $log.error("ERROR", "Login Error", err.message);
+                $rootScope.loginSuccess = true;
+                $rootScope.$apply();
+                // deferred.reject(null);
             } else if ( googleUser ) {
                 Session.googleUser = googleUser;
 
@@ -82,11 +78,14 @@ app.run(function($rootScope, GPlus, $log, Login, $http, User, Session) {
                             $rootScope.loginSuccess = true;
                             // deferred.resolve(user);
                             Session.setUser(user);
+                            // $state.go('recipe');
                         });
                 });
             } else {
                 // deferred.reject(null);
                 $log.info("ERROR", "Silent Login Error");
+                $rootScope.loginSuccess = true;
+                $rootScope.$apply();
             }
         });
     });

@@ -5,6 +5,7 @@
     locale.constant('localeEs', {
         'menu.title.desktop': 'Brew-o-Matic 2!',
         'menu.title.mobile': 'BOM 2',
+        'menu.main.home': 'Inicio',
         'menu.main.recipes': 'Recetas',
         'menu.main.water': 'Agua',
         'menu.main.equipement': 'Equipo',

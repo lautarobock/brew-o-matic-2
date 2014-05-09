@@ -1,9 +1,12 @@
 <div main-content>
     <h1>
-        <a ui-sref="recipe.list">
+        <a ui-sref="recipe">
             Recetas
         </a>
     </h1>
     <hr />
-    <ui-view/>
+    <div ui-view>
+        Este es el HOME de recetas.
+        Para ir a las listas debo ir a <a ui-sref="recipe.list">Mis Recetas</a>
+    </div>
 </div>
