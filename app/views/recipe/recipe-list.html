@@ -1,0 +1,9 @@
+<lc-tabset>
+    <lc-tab ng-repeat="tab in tabs" on-select="select(tab)" active="isTabActive(tab)">
+        <span ng-class="tab.class" class="glyphicon"></span> {{tab.title}}
+    </lc-tab>
+</lc-tabset>
+<div ui-view>
+    <p>Lista de mis recetas</p>
+    <a ui-sref="recipe.detail">Detalle</a>
+</div>

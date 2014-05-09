@@ -21,8 +21,8 @@
                         {{ i18n[currentState()] |translate}} <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li ng-repeat="state in states" ng-hide="hide(state)">
-                            <a ui-sref="{{state}}">{{i18n[state]|translate}}</a>
+                        <li ng-repeat="state in states" ng-hide="hide(state.name)">
+                            <a ui-sref="{{state.url||state.name}}">{{i18n[state.name]|translate}}</a>
                         </li>
                     </ul>
                 </li>

@@ -14,12 +14,19 @@
                     $scope.loggedUser = Session.user;
                 });
 
-
                 $scope.isCollapsed = true;
 
-                $scope.states = ['recipe','water','equipement'];
+                $scope.states = [{
+                    name: 'recipe',
+                    url: 'recipe.list'
+                },{
+                    name: 'water'
+                },{
+                    name: 'equipement'
+                }];
 
                 $scope.i18n = {
+                    'recipe.list': 'menu.main.recipes',
                     recipe: 'menu.main.recipes',
                     water: 'menu.main.water',
                     equipement: 'menu.main.equipement'

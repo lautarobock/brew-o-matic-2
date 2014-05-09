@@ -8,17 +8,21 @@
 
         
         $scope.tabs = [{
-            name: 'recipe',
-            title: 'Mias'
+            name: 'recipe.list',
+            title: 'Mias',
+            class: 'glyphicon-home'
         },{
-            name: 'recipe.collaborations',
-            title: 'Colaboraciones'
+            name: 'recipe.list.collaborations',
+            title: 'Colaboraciones',
+            class: 'glyphicon-user'
         },{
-            name: 'recipe.favorites',
-            title: 'Favoritas'
+            name: 'recipe.list.favorites',
+            title: 'Favoritas',
+            class: 'glyphicon-star'
         },{
-            name: 'recipe.publics',
-            title: 'Publicas'
+            name: 'recipe.list.publics',
+            title: 'Publicas',
+            class: 'glyphicon-share'
         }];
 
         $scope.reload = function() {
@@ -29,8 +33,12 @@
             document.getElementById('css_darkly').disabled = false;
         }
 
-        $scope.getState = function() {
-            return $state.current.name;
+        $scope.isTabActive = function(tab) {
+            return $state.current.name == tab.name;
+        };
+
+        $scope.select = function(tab) {
+            $state.go(tab.name);
         };
 
     });

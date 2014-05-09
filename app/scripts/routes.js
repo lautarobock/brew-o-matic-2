@@ -14,29 +14,37 @@
                 url: '/home',
                 template: 'No estas logueado!!'
             })
-            //Recipe Detail
-            .state('recipe-detail', {
-                url: '/recipe/detail/:_id',
-                controller: 'RecipeDetailController',
-                templateUrl: 'views/recipe/recipe-detail.html'
-            })
-            //Recipe Lists
+
+            //Recipes Root
             .state('recipe', {
-                url: "/recipe",
-                templateUrl: "views/recipe/recipe.html",
-                controller: 'RecipeController'
-            })  .state('recipe.collaborations', {
-                    url: '/collaborations',
-                    template: '<span>Listado de Collaborations</span>'
+                abstract: true,
+                url: '/recipe',
+                templateUrl: 'views/recipe/recipe.html'
+            })
+                //Recipe Detail
+                .state('recipe.detail', {
+                    url: '/detail/:_id',
+                    controller: 'RecipeDetailController',
+                    templateUrl: 'views/recipe/recipe-detail.html'
                 })
-                .state('recipe.publics', {
-                    url: '/publics',
-                    template: '<span>Listado de Publicas</span>'
+                //Recipe Lists
+                .state('recipe.list', {
+                    url: "/list",
+                    templateUrl: "views/recipe/recipe-list.html",
+                    controller: 'RecipeController'
                 })
-                .state('recipe.favorites', {
-                    url: '/favorites',
-                    template: '<strong>Recetas Favoritas</strong>'
-                })
+                  .state('recipe.list.collaborations', {
+                        url: '/collaborations',
+                        template: '<span>Listado de Collaborations</span>'
+                    })
+                    .state('recipe.list.publics', {
+                        url: '/publics',
+                        template: '<span>Listado de Publicas</span>'
+                    })
+                    .state('recipe.list.favorites', {
+                        url: '/favorites',
+                        template: '<strong>Recetas Favoritas</strong>'
+                    })
 
             //Water
             .state('water', {

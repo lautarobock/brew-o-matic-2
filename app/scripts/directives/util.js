@@ -59,4 +59,29 @@
         };
     });
 
+    util.directive('lcTabset', function() {
+        return {
+            restrict: 'E',
+            transclude: true,
+            scope: {},
+            template: '<ul class="nav nav-tabs" ng-transclude></ul>'
+        }
+    });
+
+    util.directive('lcTab', function() {
+        return {
+            replace:true,
+            restrict: 'E',
+            transclude: true,
+            scope: {
+                active: '&',
+                onSelect: '&'
+            },
+            template: 
+                '<li ng-class="{\'active\':active()}">' +
+                    '<a href="" ng-click="onSelect()" ng-transclude></a>' +
+                '</li>'
+        }
+    });
+
 })();
