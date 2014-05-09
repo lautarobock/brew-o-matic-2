@@ -54,8 +54,9 @@ app.run(function($rootScope, GPlus, $log, Login, $http, User, Session, $state) {
     $rootScope.loginSuccess = false;
 
     $rootScope.$on('g+login', function(event, authResult) {
+        $rootScope.loginError = undefined;
+        
         GPlus.evaluateAuthResult(authResult).then(function(googleUser) {
-            $rootScope.loginError = undefined;
 
             Session.googleUser = googleUser;
 
